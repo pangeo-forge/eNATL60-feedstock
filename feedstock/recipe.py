@@ -5,6 +5,10 @@ from pangeo_forge_recipes.recipes import XarrayZarrRecipe
 
 dates = pd.date_range('2009-07-01', '2010-06-30', freq='D')
 
+# As documented in https://github.com/pangeo-forge/eNATL60-feedstock/issues/2, this server is not always
+# available to service high-bandwidth requests. Concurrency limits in Pangeo Forge, if added as a feature
+# in the future, may help. In the interim, re-running this recipe may require checking with the data
+# provider regarding the best time to request data from this server.
 url_base = (
     'https://ige-meom-opendap.univ-grenoble-alpes.fr'
     '/thredds/fileServer/meomopendap/extract/eNATL60/eNATL60-BLBT02/1d'
