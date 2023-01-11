@@ -3,7 +3,7 @@ import pandas as pd
 from pangeo_forge_recipes.patterns import pattern_from_file_sequence
 from pangeo_forge_recipes.recipes import XarrayZarrRecipe
 
-dates = pd.date_range('2009-07', '2010-06', freq='M')
+dates = pd.date_range('2009-07-01', '2010-06-26', freq='5d')
 
 # As documented in https://github.com/pangeo-forge/eNATL60-feedstock/issues/2, this server is not always
 # available to service high-bandwidth requests. Concurrency limits in Pangeo Forge, if added as a feature
@@ -17,11 +17,11 @@ url_base = (
 
 def make_recipe(var, dep):
     input_url_pattern = (
-        url_base + '/eNATL60-BLBT02_y{time:%Y}m{time:%m}.1d_' + var + dep + '.nc'
+        url_base + '/eNATL60-BLBT02_y{time:%Y}m{time:%m}.5d_' + var + dep + '.nc'
     )
     input_urls = [input_url_pattern.format(time=time) for time in dates]
     pattern = pattern_from_file_sequence(input_urls, 'time_counter')
-    recipe = XarrayZarrRecipe(pattern, target_chunks={'time_counter': 1})
+    recipe = XarrayZarrRecipe(pattern, subset_inputs={"time_counter": 2}, target_chunks={'time_counter': 1})
     return recipe
 
 
