@@ -1,14 +1,10 @@
 title: eNATL60 with tides daily data
 description: >-
-  extractions of temperature, salinity and vertical velocity at some chosen
-  depths from eNATL60 NEMO simulation with tides
+  extractions of temperature, salinity and vertical velocity at 60m
+  depth from eNATL60 NEMO simulation with explicit tides
 recipes:
-  - id: eNATL60_wtides_1d_mld
-    object: 'recipe:eNATL60_wtides_1d_mld'
   - id: eNATL60_wtides_1d_tsw60m
     object: 'recipe:eNATL60_wtides_1d_tsw60m'
-  - id: eNATL60_wtides_1d_tsw600m
-    object: 'recipe:eNATL60_wtides_1d_tsw600m'
 provenance:
   providers:
     - name: MEOM IGE
