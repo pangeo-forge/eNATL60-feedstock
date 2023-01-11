@@ -17,7 +17,7 @@ url_base = (
 
 def make_recipe(var, dep):
     input_url_pattern = (
-        url_base + '/eNATL60-BLBT02_y{time:%Y}m{time:%m}.5d_' + var + dep + '.nc'
+        url_base + '/eNATL60-BLBT02_y{time:%Y}m{time:%m}d{time:%d}.5d_' + var + dep + '.nc'
     )
     input_urls = [input_url_pattern.format(time=time) for time in dates]
     pattern = pattern_from_file_sequence(input_urls, 'time_counter')
